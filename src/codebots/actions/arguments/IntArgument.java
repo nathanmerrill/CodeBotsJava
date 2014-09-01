@@ -18,11 +18,11 @@ public abstract class IntArgument extends Argument<Integer>{
 
     @Override
     public boolean equalsExact(Argument other, Bot current) {
-        return other.getValue(current) == this.getValue(current);
+        return other.getValue(current).equals(this.getValue(current));
     }
 
     @Override
-    public boolean equals(Argument other, Bot current) {
+    public boolean isSimilarTo(Argument other, Bot current) {
         return equalsExact(other, current);
     }
 

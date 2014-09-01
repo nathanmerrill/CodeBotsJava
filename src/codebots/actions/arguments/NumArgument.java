@@ -26,4 +26,6 @@ public class NumArgument extends IntArgument {
     public void blockValue(Bot current, int hostLine){
         throw new BadFormatException("Cannot block number");
     }
+
+
 }

@@ -7,10 +7,6 @@ public class FlagAction extends Action<FlagAction> {
     public FlagAction(Bot original){
         owner = original;
     }
-    @Override
-    public boolean equals(FlagAction action) {
-        return owner == action.owner;
-    }
 
     @Override
     public void act(Bot b) {}

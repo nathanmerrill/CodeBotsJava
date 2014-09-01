@@ -1,6 +1,7 @@
 package codebots.actions.arguments;
 
 import codebots.Bot;
+import codebots.CodeBots;
 import codebots.exceptions.BadFormatException;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class AddArgument extends IntArgument{
         for (Argument<Integer> addend: addends){
             sum += addend.getValue(current);
         }
-        return sum % 24;
+        return sum % CodeBots.numLines;
     }
 
     @Override

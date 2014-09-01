@@ -32,7 +32,7 @@ public class VarArgument extends IntArgument{
     }
 
     @Override
-    public boolean equals(Argument other, Bot current) {
+    public boolean isSimilarTo(Argument other, Bot current) {
         if (var != 'D'){
             return equalsExact(other, current);
         }

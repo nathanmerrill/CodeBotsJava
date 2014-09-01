@@ -32,7 +32,7 @@ public class LineArgument extends Argument<Action<?>> {
     }
 
     @Override
-    public boolean equals(Argument other, Bot current) {
+    public boolean isSimilarTo(Argument other, Bot current) {
         if (other instanceof LineArgument) {
             LineArgument lineArgument = (LineArgument) other;
             return lineArgument.getValue(current).isSimilarTo(getValue(current));
@@ -51,9 +51,6 @@ public class LineArgument extends Argument<Action<?>> {
 
     @Override
     public boolean isTrue(Bot current) {
-        if (getValue(current) instanceof FlagAction) {
-            return true;
-        }
-        return false;
+        return getValue(current) instanceof FlagAction;
     }
 }

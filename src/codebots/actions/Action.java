@@ -3,9 +3,12 @@ package codebots.actions;
 import codebots.Bot;
 import codebots.exceptions.BadFormatException;
 
+import java.util.HashMap;
+
 public abstract class Action<T extends Action<T>> {
+    private static HashMap<String, Action> memoizer = new HashMap<>();
     public abstract void act(Bot bot);
-    public boolean equals(T action){
+    public boolean equalsExact(Action action){
         return action.command.equals(this.command);
     }
     @Override
@@ -17,14 +20,13 @@ public abstract class Action<T extends Action<T>> {
         return action.getClass().equals(this.getClass());
     }
     public static Action<?> createAction(String line, Bot creator){
-        String originalLine = line;
         if (line.length()==0){
             throw new BadFormatException("Line needed");
         }
-        String name = null;
-        try {
+        String name;
+        if (line.contains(" ")){
             name = line.substring(0, line.indexOf(" "));
-        }catch(StringIndexOutOfBoundsException e){
+        } else {
             name = line;
         }
         line = line.substring(name.length());
@@ -33,6 +35,13 @@ public abstract class Action<T extends Action<T>> {
         }
         line = line.trim();
         String[] parts = line.split(" ");
+        String fullLine = name+" "+line;
+        if (name.equals("Flag")){
+            fullLine+=" "+creator.name;
+        }
+        if (memoizer.containsKey(fullLine)){
+            return memoizer.get(fullLine);
+        }
         Action<?> action = null;
         if (name.equals("Move")){
             if (!line.isEmpty()){
@@ -61,7 +70,8 @@ public abstract class Action<T extends Action<T>> {
             action = new BlockAction(parts[0]);
         }
         if (action != null)
-            action.command = originalLine;
+            action.command = fullLine;
+        memoizer.put(fullLine, action);
         return action;
     }
 }

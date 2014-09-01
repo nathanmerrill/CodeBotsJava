@@ -9,12 +9,12 @@ import java.util.HashSet;
 
 public class IfAction extends Action<IfAction>{
     private enum ConditionType{Var, Equals, EqualsExact}
-    private ConditionType conditionType;
-    private Argument leftComparison;
-    private Argument rightComparison;
-    private LineArgument falseLine;
-    private LineArgument trueLine;
-    public static HashSet<String> recursionBlocker = new HashSet<>();
+    private final ConditionType conditionType;
+    private final Argument leftComparison;
+    private final Argument rightComparison;
+    private final LineArgument falseLine;
+    private final LineArgument trueLine;
+    public final static HashSet<String> recursionBlocker = new HashSet<>();
     public IfAction(String condition, String trueLine, String falseLine){
         if (condition.contains("==")){
             conditionType = ConditionType.EqualsExact;
@@ -34,6 +34,7 @@ public class IfAction extends Action<IfAction>{
             rightComparison = Argument.parseArgument(parts[1]);
         } else {
             leftComparison = Argument.parseArgument(condition);
+            rightComparison = null;
             conditionType = ConditionType.Var;
         }
         this.falseLine = (LineArgument) Argument.parseArgument(falseLine);
@@ -46,15 +47,15 @@ public class IfAction extends Action<IfAction>{
             return;
         recursionBlocker.add(this.command);
         if (this.isTrue(b)){
-            this.falseLine.getValue(b).act(b);
-        } else {
             this.trueLine.getValue(b).act(b);
+        } else {
+            this.falseLine.getValue(b).act(b);
         }
     }
     private boolean isTrue(Bot b){
         switch (conditionType){
             case Equals:
-                return leftComparison.equals(rightComparison, b);
+                return leftComparison.isSimilarTo(rightComparison, b);
             case EqualsExact:
                 return leftComparison.equalsExact(rightComparison, b);
             case Var:

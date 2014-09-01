@@ -9,7 +9,7 @@ public abstract class Argument<T> {
     public abstract void setValue(Bot current, T value);
     public abstract void blockValue(Bot current, int hostLine);
     public abstract boolean isTrue(Bot current);
-    public abstract boolean equals(Argument other, Bot current);
+    public abstract boolean isSimilarTo(Argument other, Bot current);
     public abstract boolean equalsExact(Argument other, Bot current);
     public Bot followOpponent(Bot bot, int num_opponents){
         for (int i = 0; i < num_opponents; i++){

@@ -7,19 +7,24 @@ import java.util.List;
 
 public class Scorer implements Comparable<Scorer> {
     public static HashMap<String, Scorer> scorers = new HashMap<String, Scorer>();
+    public static int noFlags = 0;
     public static void scoreBots(){
         for (Scorer s: scorers.values()) {
             for (Bot b: s.bots) {
                 String flag = b.declareFlag();
+                if (flag.equals("")){
+                    noFlags++;
+                    continue;
+                }
                 scorers.get(flag).score++;
             }
         }
     }
     public static void addBot(Bot b){
-        if (scorers.containsKey(b.name)){
-            scorers.get(b.name).bots.add(b);
+        if (!scorers.containsKey(b.name)){
+            scorers.put(b.name, new Scorer(b));
         }
-        scorers.put(b.name, new Scorer(b));
+        scorers.get(b.name).bots.add(b);
     }
     private final List<Bot> bots;
     private int score;
@@ -39,6 +44,6 @@ public class Scorer implements Comparable<Scorer> {
     }
     @Override
     public int compareTo(Scorer o) {
-        return this.score - o.score;
+        return o.score - this.score;
     }
 }

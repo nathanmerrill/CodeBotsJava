@@ -5,8 +5,6 @@ import codebots.actions.FlagAction;
 import codebots.actions.IfAction;
 import codebots.exceptions.NoOpponent;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Bot {
@@ -19,12 +17,11 @@ public class Bot {
     public int x, y;
     private static Random random = new Random(System.currentTimeMillis());
 
-    public Bot(File botFile) throws FileNotFoundException{
-        String filename = botFile.getName();
-        name = filename.substring(0,filename.indexOf("."));
-        Scanner scanner = new Scanner(botFile);
-        String[] lines = scanner.useDelimiter("\\Z").next().replace("\r","").split("\n");
-        scanner.close();
+
+
+    public Bot(String name, String text){
+        String[] lines = text.replace("\r","").split("\n");
+        this.name = name;
         actions = new Action[CodeBots.numLines];
         initialActions = new Action[CodeBots.numLines];
         int action_index = 0;
@@ -76,7 +73,7 @@ public class Bot {
     }
     public void blockLine(int lineNumber, int hostLine){
         if (!actionBlocks.get(lineNumber%24).contains(hostLine)){
-            actionBlocks.get(lineNumber%24).add(lineNumber);
+            actionBlocks.get(lineNumber%24).add(hostLine);
         }
     }
     public void blockVar(char var, int hostLine){
@@ -86,7 +83,7 @@ public class Bot {
     }
     public String declareFlag(){
         HashMap<String, Integer> count = new HashMap<>();
-        for (Action a: actions){
+        for (Action a: this.actions){
             if (a instanceof FlagAction) {
                 FlagAction fl = (FlagAction) a;
                 if (count.containsKey(fl.owner.name)){
@@ -110,7 +107,7 @@ public class Bot {
     }
     public void takeTurn(){
         IfAction.recursionBlocker.clear();
-        vars['E'-'A'] = Math.abs(random.nextInt()%CodeBots.numLines);
+        vars['E'-'A'] = random.nextInt(CodeBots.numLines);
         try {
             getLine(vars['C' - 'A']).act(this);
         } catch(NoOpponent e){
@@ -124,10 +121,10 @@ public class Bot {
         for (int i = 0; i < 5; i++){
             vars[i] = 0;
         }
-        vars['D'-'A'] = Math.abs(random.nextInt()%CodeBots.numLines);
+        vars['D'-'A'] = random.nextInt(CodeBots.numLines);
     }
     public void reset(){
-        System.arraycopy(actions, 0, initialActions, 0, actions.length);
+        System.arraycopy(initialActions, 0, actions, 0, actions.length);
         setVars();
         for (Queue<Integer> block: blocks){
             block.clear();
@@ -135,5 +132,30 @@ public class Bot {
         for (Queue<Integer> block: actionBlocks){
             block.clear();
         }
+    }
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("\n"+this.name+"\n");
+        string.append("--------------------------------\n");
+        for (Action action: this.actions){
+            string.append(action.toString());
+            string.append("\n");
+        }
+        return string.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    public int getDiff(){
+        int diff = 0;
+        for (int i = 0; i < CodeBots.numLines; i++){
+            if (lineIsChanged(i)){
+                diff++;
+            }
+        }
+        return diff;
+    }
+    public boolean lineIsChanged(int i){
+        return !this.actions[i].equals(initialActions[i]);
     }
 }
