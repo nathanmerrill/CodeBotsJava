@@ -1,0 +1,24 @@
+If D #C+10+B #C+8
+Copy C+22 C
+Flag
+Copy C+23 C
+Move
+Copy D+3 D
+Copy #C+3 *#*C
+Copy #C+2 *#*E
+If E #C+15 #C+16
+If E #C+5 #C+7
+If E=0 #C+11 #C+12
+If *E=0 #C+13 #C+12
+If *#*C==#C+3 #C+9 #C+6
+Copy 7 B
+Copy C+21 C
+If E #C+4 #C+5
+Block #E
+If *#*C==#C+3 #C+15 #C+6
+Copy C+15 C
+Copy 23 A
+Copy D *D
+Copy #A *#*C+A
+Copy A+23 A
+If A=23 #C+6 #C+14

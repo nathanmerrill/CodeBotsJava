@@ -1,0 +1,15 @@
+Move
+If D #10 #0
+If D #10 #0
+If D #10 #0
+If D #10 #0
+If D #10 #0
+If D #10 #0
+If D #10 #0
+If D #10 #0
+Copy 0 C
+If *#E=#14 #11 #9
+If *#E==#14 #13 #12
+Copy D+1 D
+Copy #14 *#E
+Flag

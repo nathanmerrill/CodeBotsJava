@@ -1,0 +1,15 @@
+Move
+If D #3 #2
+Copy 23 C
+Copy 3 C
+If *#A=#23 #5 #6
+If *#A==#23 #6 #9
+Copy 6 C
+Copy A+23 A
+Copy 3 C
+Copy 9 C
+Copy #23 *#A
+If A #8 #12
+Copy 12 C
+Copy D+1 D
+Copy 23 C

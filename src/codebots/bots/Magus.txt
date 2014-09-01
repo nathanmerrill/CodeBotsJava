@@ -1,10 +1,7 @@
-Copy 1 A
-Copy 25 B
-If A=B #8 #4
 Block #A
 Copy #A *#A
 Copy A+1 A
-Copy 2 C
+If A #0 #4
 Copy 0 *C
 Flag
 Move

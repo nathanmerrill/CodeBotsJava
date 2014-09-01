@@ -1,0 +1,24 @@
+If D #15 #19
+Move
+If D #16 #20
+Copy D+3 D
+Block #A
+If D #15 #20
+Copy A+1 A
+If D #16 #1
+Move
+If D #15 #19
+If D #16 #4
+Copy E D
+Block #A+12
+Copy C+10 C
+Flag
+If *#0==#14 #17 #21
+If *#0==#14 #18 #21
+If *#*C+1==#14 #18 #22
+Copy *C+11 *C
+Block #A+6
+Block #A+18
+Copy #14 *#0
+Copy #23 *#*C+1
+Flag

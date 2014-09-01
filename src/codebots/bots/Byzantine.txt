@@ -1,0 +1,24 @@
+Block #A
+Block #A+1
+Block #A+2
+Copy E D
+Move
+Block #A+3
+Block #A+4
+Move
+Copy #22 *#*C+1
+Copy E D
+Move
+Block #A+5
+Block #A+6
+Block #A+7
+Move
+Copy #22 *#23
+Block #A+8
+Block #A+9
+Block #A+10
+Copy #22 *#2
+Copy A+14 A
+Move
+Flag
+Copy #22 *#*C+12
