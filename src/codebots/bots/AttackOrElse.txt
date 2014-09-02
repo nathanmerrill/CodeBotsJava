@@ -1,0 +1,24 @@
+Block #C+A          //Dynamic block for If statments
+If D #20 #0
+If D #19 #0
+If D #20 #23
+If D #19 #0
+If D #20 #0
+If D #19 #0
+If D #20 #23
+Copy A+7 A          //Increment dynamic block
+If D #20 #0
+If D #19 #0
+If D #20 #0
+If D #19 #23
+If D #20 #0
+If D #19 #0
+If D #20 #23
+Copy E D            //Change direction randomly
+Copy 23 C           //Loop to beginning
+Copy 23 C           //Loop to beginning
+Copy #22 *#*C+1     //Copy my copy attack to the enemy's next
+Copy #21 *#*C+1     //Copy my flag to the enemy's next
+Flag
+Copy #C+23 *#*C+1   //Copy the previous element to the enemy's next
+Move
