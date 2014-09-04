@@ -1,0 +1,22 @@
+Block #C+A
+If D #7 #13        //If [enemy] Copy 0 ELSE block
+If D #8 #0         //If [enemy] Freeze 0 ELSE block
+If D #9 #6         //If [enemy] QuickLoop ELSE Inc
+Move
+Copy 0 C
+Copy A+5 A          //Inc
+Copy 23 *C          //Copy 0
+Copy #10 *#*C+23    //FreezeAttack
+If *#*C==#10 #11 #5 //FreezeCheck
+Copy C+23 C         //FREEZE
+Copy 13 C           //GOTO Copy Attack
+Copy 15 C           //Loop Copy Attack
+Block #C+A
+Copy D+3 *D             //Copy Attack: Spin Enemy
+Copy 0 *B               //Set enemy counter (a la COTO)
+Copy #*B+0 *#*C+*B+1    //Copy my lines x3
+Copy #*B+1 *#*C+*B+2    //
+Copy #*B+2 *#*C+*B+3    //
+Copy *B+3 *B            //Inc counter
+If *B==0 #19 #12        //Loop check
+Copy D+1 D              //Turn myself

@@ -1,0 +1,19 @@
+Block #C+A
+If D #C+7 #C+1
+Block #C+A
+Move
+Copy A+5 A
+If A==0 #C+12 #C+21
+Copy C+17 C
+Copy D+3 *D
+Copy C+9 C
+Copy C+21 C
+Copy C+23 C
+Copy #C+23 *#*C+2
+Copy #C+22 *#*C+1
+Copy 0 *A
+Copy #*A+C+9 *#*C+*A+1
+Copy *A+1 *A
+If *A==0 #C+15 #C+17
+Copy D+1 D
+Copy C+5 C
