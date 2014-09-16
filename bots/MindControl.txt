@@ -1,0 +1,24 @@
+Block #C+D
+If D #2 #0        // Scan for enemy
+If *#E==#E #0 #5  // Attack if necessary
+Copy D+5 D        // Turn
+Copy 22+1 C       // Repeat
+Copy 4+1 C        // ATTACK:
+Copy #22+1 *#*C   //   Freeze
+Copy #17 *#17     //   Upload the DOWNLOADER
+Copy #18 *#18     //
+Copy #21 *#19     //
+Copy D+2 *D       //   FACE ME!!
+Copy 17 *C        //   Start download
+If E #0 #13
+If E #0 #13
+Copy 22+1 C
+Flag
+Flag
+Copy *#B+20 #B+20         // DOWNLOADER
+If *#B+20==#B+20 *#20 #19 //
+Copy 22+1 C               //
+Copy 1+B B                //
+Copy 16 C                 //
+Flag
+Copy 23+C C        // FREEZE
